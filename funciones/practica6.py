@@ -1,3 +1,6 @@
+
+
+
 #ejercicio 1
 
 def factura_total(cantidad_inicial, iva = 21):
