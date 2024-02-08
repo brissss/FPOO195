@@ -57,6 +57,7 @@ while True:
         saldo -= monto
     print(f"operación: ", operacion, monto, "y", "saldo actual: ", saldo)
 print(f"resultado del saldo final: ", saldo)
+  yield numero
 
 
 #ejercicio 7 - terminado
