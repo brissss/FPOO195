@@ -70,8 +70,8 @@ def menu():
   print("3. Numero menor de la lista")
   print("4. Promedio")
   print("5. Moda: es el valor que más se repite de un conjunto de datos")
-  print("6. Rango: es la diferencia entre el valor maximo y el valor mínimo de un conjunto de datos")
-  opcion = int(input("Elija una opción: "))
+  print("6. Rango: es la diferencia entre el valor maximo y el valor minimo de un conjunto de datos")
+  opcion = int(input("Elija una opcion: "))
   return opcion
 
 
@@ -81,9 +81,9 @@ def main():
   if opcion == 1:
     print(f"La sumatoria de los elementos de la tupla es {sumatoria(tupla)}")
   elif opcion == 2:
-    print(f"El número mayor de la tupla es {numero_mayor(tupla)}")
+    print(f"El numero mayor de la tupla es {numero_mayor(tupla)}")
   elif opcion == 3:
-    print(f"El número menor de la tupla es {numero_menor(tupla)}")
+    print(f"El numero menor de la tupla es {numero_menor(tupla)}")
   elif opcion == 4:
     print(f"El promedio de los elementos de la tupla es {promedio(tupla)}")
   elif opcion == 5:
@@ -91,7 +91,7 @@ def main():
   elif opcion == 6:
     print(f"El rango de la tupla es {rango(tupla)}")
   else:
-    print("Opción no válida")
+    print("Opcion no valida")
 
 
 if __name__ == "__main__":
