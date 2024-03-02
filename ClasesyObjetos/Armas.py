@@ -11,7 +11,7 @@ class Armas:
             print('Arma creada por los Shagheili')
             
         if(seleccion == 3):
-            print('Rifle M392 asignada a '+nombre)
+            print('Rifle M392 asignada a '+ nombre)
             print('Municiones 7.62 * 52mm, con mira')
         
     

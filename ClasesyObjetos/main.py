@@ -20,14 +20,16 @@ nemesis = Personaje(especieN,nombreN,alturaN)
 Arma = Armas()
 
 print('===== Datos del Spartan ======')
-print(spartan.nombre)
-print(spartan.especie)
-print(spartan.altura)
+print(spartan.getNombre())
+print(spartan.getEspecie())
+print(spartan.getAltura())
 print("")
 
 # atributos nemesis 
 print('===== Datos del villano ======')
-print(nemesis.nombre)
-print(nemesis.especie)
-print(nemesis.altura)
+print(nemesis.getNombre())
+print(nemesis.getEspecie())
+print(nemesis.getAltura())
 print("")
+
+spartan.__pensar()
