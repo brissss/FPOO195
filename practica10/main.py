@@ -1,62 +1,51 @@
-from Usuario import *
+import sys
+from Persona import *
 
-#solicitar agregar datos, consultar, editar, eliminar
-opcion = input("Elige una opción: ")
+objectPeople= Persona()
 
-if opcion == "agregar":
-  idU = int(input('ingrese el id del usuario:\n'))
-  nombreU = input('Escribe el nombre del usuario:\n ')
-  apellidosU = input('Escribe los apellidos del usuario:\n')
-  sexoU = input('Ingresa el sexo del usuario:\n ')
-  edadU = int(input('Escribe la edad del usuario:\n '))
-  correoU = input('Escribe el correo del usuario:\n')
-  contrasenaU = input('Ingresa la contraseña del usuario:\n ')
-
-elif opcion == "consultar":
-    idU = int(input('Ingrese el ID del usuario a consultar:\n'))
+while True:
+  print ("=== menu =====")
+  print ("1. Insertar Persona: ")
+  print ("2. Consultar todos: ")
+  print ("3. Buscar una Persona:")
+  print ("4. Eliminar una Persona: ")
+  print("5. Editar una Persona: ")
+  print ("6. Salir")
+  opcion = input("Elige una opción: ")
+  
+  if opcion == "1" :
+    print(" == Ingresa los datos del usuario == ")
+    id= input ("Escribe el Id: ")
+    nom= input ("Escribe el Nombre: ")
+    eda= input ("Escribe la Edad: ")
+    objectPeople. Insertar (id, nom, eda)
+    print(" :: Persona Agregada correctamente ::")
     
-    print("ID: " + idU)
-    print("Nombre: " + nombreU)
-    print("Apellidos: " + apellidosU)
-    print("Sexo: " + sexoU)
-    print("Edad: " + edadU)
-    print("Correo: " + correoU)
+  elif opcion == "2":
+    print(" :: Estos son las Personas guardadas ::")
+    objectPeople. consultarTodos ()
     
-elif opcion == "editar":
-    idU = int(input('Ingrese el ID del usuario a editar:\n'))
+  elif opcion == "3":
+    print(" :: Introduce Id de la persona ::")
+    id= input ("Id: ")
+    objectPeople. buscarUsuario(id)
+#You, 15 hours ago • Simulacion CRUD completo
+
+  elif opcion == "4":
+    print(" :: Introduce Id de la persona a eliminar ::")
+    id= input ("Id: ")
+    objectPeople. eliminar (id)
     
-    nombreU = input('Escribe el nuevo nombre del usuario:\n ')
-    apellidosU = input('Escribe los nuevos apellidos del usuario:\n')
-    sexoU = input('Ingresa el nuevo sexo del usuario:\n ')
-    edadU = int(input('Escribe la nueva edad del usuario:\n '))
-    correoU = input('Escribe el nuevo correo del usuario:\n')
-    contrasenaU = input('Ingresa la nueva contraseña del usuario:\n ')
+  elif opcion == "5" :
+    print(" :: Introduce Id de la persona a editar ::")
+    id= input("Id: ")
+    nm= input ("Nombre: ")
+    ed= input ("Edad: ")
+    objectPeople. editar (id,nm, ed)
     
-    print("Usuario actualizado correctamente.")
+  elif opcion == "6" :
+    print ("¡Hasta luego!")
+    sys.exit ()
     
-elif opcion == "eliminar":
-     idU = int(input('Ingrese el ID del usuario a eliminar:\n'))
-     
-     print("usuario eliminado correctamente.")
-else:
-  print("Opción no válida.")
-  exit()
-
-
-#solicitar consultar datos
-Perfil = Usuario(idU,nombreU,apellidosU,sexoU,edadU,correoU,contrasenaU)
-
-#uso de atributos
-print(Perfil.getId())
-print(Perfil.getNombre())
-print(Perfil.getApellidos())
-print(Perfil.getSexo())
-print(Perfil.getEdad())
-print(Perfil.getCorreo())
-print(Perfil.getContrasena())
-
-#uso de metodos
-Perfil.crear()
-Perfil.actualizar()
-Perfil.consultar()
-Perfil.eliminar()
+  else:
+    print("Opción no válida. Inténtalo de nuevo.")
