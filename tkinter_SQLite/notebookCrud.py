@@ -1,6 +1,13 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+from Controlador import *
+
+objControlador = Controlador()
+
+def ejecutarInsert():
+    objControlador.insertUsuario(var1.get(), var2.get(), var3.get())
+    
 
 #1. crear ventana
 ventana  = Tk()
@@ -41,6 +48,7 @@ var3 = tk.StringVar()
 Label(pestana1, text="Contraseña: ").pack()
 Entry(pestana1, textvariable=var3).pack()
 
-
+btn_guardar = tk.Button(pestana1, text="Guardar usuario", command=ejecutarInsert)
+btn_guardar.pack()
 
 ventana.mainloop()
