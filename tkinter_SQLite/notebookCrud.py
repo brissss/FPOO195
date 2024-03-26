@@ -7,12 +7,16 @@ objControlador = Controlador()
 
 def ejecutarInsert():
     objControlador.insertUsuario(var1.get(), var2.get(), var3.get())
+
+def ejecutarBusqueda():
+    usuarioBD = objControlador.buscarUsuario(varBus.get())
+    print(usuarioBD)
     
 
 #1. crear ventana
 ventana  = Tk()
 ventana .title("CRUD de Usuarios")
-ventana.geometry("500x300")
+ventana.geometry("800x600")
 
 #2. preparar el notebook para las pestañas
 panel= ttk.Notebook(ventana)
@@ -33,7 +37,7 @@ panel.add(pestana4, text="Editar Usuario")
 panel.add(pestana5, text="Eliminar Usuario")
 
 #5 pestaña 1:formulario de insert
-Label(pestana1, text="Registro de Usuarios", fg="blue", font=("modern",18)).pack()
+Label(pestana1, text="Registro de Usuarios", fg="red", font=("modern",25)).pack()
 
 
 var1 = tk.StringVar()
@@ -50,5 +54,17 @@ Entry(pestana1, textvariable=var3).pack()
 
 btn_guardar = tk.Button(pestana1, text="Guardar usuario", command=ejecutarInsert)
 btn_guardar.pack()
+
+#6 pestaña 2: buscar ususario
+Label(pestana2, text="Buscar Usuario", fg="red", font=("modern",25)).pack()
+
+varBus = tk.StringVar()
+Label(pestana2, text="Id: ").pack()
+Entry(pestana2, textvariable=varBus).pack()
+
+Button(pestana2, text="Buscar Usuario", command=ejecutarBusqueda).pack()
+
+Label(pestana2, text="Registrado", fg="white", font=("modern",18)).pack()
+tk.Text(pestana2, height=5, width=52).pack()
 
 ventana.mainloop()
