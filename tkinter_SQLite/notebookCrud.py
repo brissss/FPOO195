@@ -10,7 +10,14 @@ def ejecutarInsert():
 
 def ejecutarBusqueda():
     usuarioBD = objControlador.buscarUsuario(varBus.get())
-    print(usuarioBD)
+    if txtBusquedaUsuario:  
+        txtBusquedaUsuario.delete('1.0', END)  
+        if usuarioBD:
+            for usuario in usuarioBD:
+                txtBusquedaUsuario.insert(END, f"ID: {usuario[0]}, Nombre: {usuario[1]}, Correo: {usuario[2]}\n")
+        else:
+            txtBusquedaUsuario.insert(END, "No se encontró el usuario.")
+
     
 
 #1. crear ventana
@@ -65,6 +72,8 @@ Entry(pestana2, textvariable=varBus).pack()
 Button(pestana2, text="Buscar Usuario", command=ejecutarBusqueda).pack()
 
 Label(pestana2, text="Registrado", fg="white", font=("modern",18)).pack()
-tk.Text(pestana2, height=5, width=52).pack()
+#tk.Text(pestana2, height=5, width=52).pack()
+txtBusquedaUsuario = tk.Text(pestana2, height=5, width=52)
+txtBusquedaUsuario.pack()
 
 ventana.mainloop()

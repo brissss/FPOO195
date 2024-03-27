@@ -52,6 +52,6 @@ class Controlador:
                 return usuario
             except sqlite3.OperationalError:
                 print("No se pudo ejecutar la busqueda")
-            
+    
             
           
