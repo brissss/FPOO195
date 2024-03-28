@@ -52,6 +52,17 @@ class Controlador:
                 return usuario
             except sqlite3.OperationalError:
                 print("No se pudo ejecutar la busqueda")
-    
-            
-          
+
+
+    def mostrarTodosUsuarios(self):
+        conex = self.conexion()
+        cursor = conex.cursor()
+        try:
+            cursor.execute("select * from tbUsuarios")
+            usuarios = cursor.fetchall()
+            conex.close()
+            return usuarios
+        except sqlite3.OperationalError:
+            print("Error", "No hay registros")
+            conex.close()
+            return []

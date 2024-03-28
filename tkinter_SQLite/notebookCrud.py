@@ -18,7 +18,17 @@ def ejecutarBusqueda():
         else:
             txtBusquedaUsuario.insert(END, "No se encontró el usuario.")
 
+#funcion consultar ususario
+def ejecutarUsuarios():
+    usuarios = objControlador.mostrarTodosUsuarios()
+    texto_usuarios = ''
+    for usuario in usuarios:
+        texto_usuarios += f"ID: {usuario[0]}, Nombre: {usuario[1]}, Correo: {usuario[2]}, Contrasena: {usuario[3]}\n"
     
+    textRegistrototal.delete(1.0, "end")
+    textRegistrototal.insert("end", texto_usuarios)
+
+       
 
 #1. crear ventana
 ventana  = Tk()
@@ -73,7 +83,16 @@ Button(pestana2, text="Buscar Usuario", command=ejecutarBusqueda).pack()
 
 Label(pestana2, text="Registrado", fg="white", font=("modern",18)).pack()
 #tk.Text(pestana2, height=5, width=52).pack()
-txtBusquedaUsuario = tk.Text(pestana2, height=5, width=52)
+txtBusquedaUsuario = tk.Text(pestana2, height=5, width=60)
 txtBusquedaUsuario.pack()
+
+#7 pestaña 3: consultar usuarios
+Label(pestana3, text="Consultar Usuarios", fg="white", font=("Modern", 18)).pack()
+
+Button(pestana3, text="Consultar", command=ejecutarUsuarios).pack()
+
+Label(pestana3, text="Todos los Registros", fg="white", font=("mono", 18)).pack()
+textRegistrototal = tk.Text(pestana3, height=30, width=120)
+textRegistrototal.pack()
 
 ventana.mainloop()
