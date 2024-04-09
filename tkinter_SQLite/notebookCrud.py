@@ -2,8 +2,11 @@ from tkinter import *
 from tkinter import ttk
 import tkinter as tk
 from Controlador import *
+from GeneradorPDF import *
+import os
 
 objControlador = Controlador()
+objPDF = GeneradorPDF()
 
 def ejecutarInsert():
     objControlador.insertUsuario(var1.get(), var2.get(), var3.get())
@@ -18,7 +21,7 @@ def ejecutarBusqueda():
         else:
             txtBusquedaUsuario.insert(END, "No se encontró el usuario.")
 
-#funcion consultar ususario
+#funcion consultar usuario
 def ejecutarUsuarios():
     usuarios = objControlador.mostrarTodosUsuarios()
     texto_usuarios = ''
@@ -27,6 +30,19 @@ def ejecutarUsuarios():
     
     textRegistrototal.delete(1.0, "end")
     textRegistrototal.insert("end", texto_usuarios)
+
+#funcion para ejecutar o crear el pdf
+def ejecutaPDF():
+    if varTitulo== "":
+        messagebox.showwarning("Importante", "Escribe un nombre al pdf")
+    else:
+        objPDF.add_page()
+        objPDF.chapter_body()
+        objPDF.output(str(varTitulo.get() + ".pdf"))
+        rutaPDF = "/Users/brissgarcia/Documents/GitHub/FPOO195/tkinter_SQLite/" + varTitulo.get() + ".pdf"
+        messagebox.showinfo("Archivo creado", "PDF disponible en carpeta")
+        os.system(f"start {rutaPDF}")
+    
 
        
 
@@ -45,13 +61,15 @@ pestana2 = ttk.Frame(panel)
 pestana3 = ttk.Frame(panel)
 pestana4 = ttk.Frame(panel)
 pestana5 = ttk.Frame(panel)
+pestana6 = ttk.Frame(panel)
 
 #4. agregamos las pestañas
 panel.add(pestana1, text="Crear Usuario")
 panel.add(pestana2, text="Buscar Usuario")
 panel.add(pestana3, text="Consultar Usuarios")
 panel.add(pestana4, text="Editar Usuario")
-panel.add(pestana5, text="Eliminar Usuario")
+panel.add(pestana5, text="Borrar Usuario")
+panel.add(pestana6, text="Exportar PDF")
 
 #5 pestaña 1:formulario de insert
 Label(pestana1, text="Registro de Usuarios", fg="red", font=("modern",25)).pack()
@@ -94,5 +112,20 @@ Button(pestana3, text="Consultar", command=ejecutarUsuarios).pack()
 Label(pestana3, text="Todos los Registros", fg="white", font=("mono", 18)).pack()
 textRegistrototal = tk.Text(pestana3, height=30, width=120)
 textRegistrototal.pack()
+
+#8 pestaña 4: editar usuario
+Label(pestana4, text="Editar Usuario", fg="white", font=("Modern", 25)).pack()
+
+#9 pestaña 5: borrar usuario
+Label(pestana5, text="Borrar Usuario", fg="white", font=("Modern", 25)).pack()
+
+#10 pestaña 6: reportes en pdf
+Label(pestana6, text="Reporte Usuarios en PDF", fg="red", font=("Modern", 25)).pack()
+
+varTitulo = tk.StringVar()
+Label(pestana6, text="Titulo del archivo:", fg="white", font=("Modern", 12)).pack()
+Entry(pestana6, textvariable=varTitulo).pack()
+
+Button(pestana6, text="Crear Reporte PDF", command=ejecutaPDF).pack()
 
 ventana.mainloop()
